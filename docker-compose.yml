@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    container_name: nginx-ism209-2020set
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - 8080:80
+      - 443:443
+    
+  database:
+    container_name: tomisflask-db-ism209-2020set
+    image: postgres:latest 
+    ports: 
+      - "5433:5432"    
+    env_file:
+      - flask.env
+    volumes: 
+      - /var/lib/postgresql/data
+
